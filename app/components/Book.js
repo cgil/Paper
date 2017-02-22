@@ -1,30 +1,30 @@
-import React, { Component, } from 'react'
-import { View, Image } from 'react-native'
+import React, { Component, } from 'react';
+import { View, Image } from 'react-native';
 import { Container, Content, Card, CardItem, Left, Right, Body, Thumbnail, Text, Button, Icon, Grid, Row, Col } from 'native-base';
-
-const defaultCover = 'https://a.wattpad.com/cover/67943442-288-k687715.jpg';
+import { shortNumber } from '../utils/formatter';
 
 class Book extends Component {
 
   static propTypes = {
     title: React.PropTypes.string.isRequired,
     author: React.PropTypes.string.isRequired,
-    cover: React.PropTypes.string,
-    description: React.PropTypes.string,
-    views: React.PropTypes.number,
-    stars: React.PropTypes.number
+    cover: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    views: React.PropTypes.number.isRequired,
+    stars: React.PropTypes.number.isRequired
   }
 
   static defaultProps = {
-    cover: defaultCover,
+    cover: 'https://a.wattpad.com/cover/67943442-288-k687715.jpg',
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum doculpa qui officia deserunt mollit anim id est laborum.",
-    views: 100,
-    stars: 43
+    views: 201200,
+    stars: 1400000
   }
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+    }
   }
 
   render() {
@@ -32,7 +32,6 @@ class Book extends Component {
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail />
             <Body>
               <Text>{ this.props.title }</Text>
               <Text note>{ this.props.author }</Text>
@@ -43,27 +42,27 @@ class Book extends Component {
         <CardItem cardBody>
           <Grid>
             <Col>
-              <Image style={{ resizeMode: 'contain', flex: 1 }} source={{ uri: this.props.cover }} />
+              <Image style={{ resizeMode: 'contain', flex: 1, width: null, height: 200 }} source={{ uri: this.props.cover }} />
             </Col>
             <Col>
-              <Row>
+              <Row style={{ flexShrink: 1, flexGrow: 0}}>
                 <Col>
-                  <Button iconLeft transparent>
+                  <Button small iconLeft transparent style={{ paddingLeft: 10, paddingVertical: 0 }}>
                     <Icon active name="eye" />
-                    <Text>{ this.props.views }</Text>
+                    <Text>{ shortNumber(this.props.views) }</Text>
                   </Button>
                 </Col>
                 <Col>
-                  <Button iconLeft transparent>
+                  <Button small iconLeft transparent style={{ paddingVertical: 0 }}>
                     <Icon active name="star" />
-                    <Text>{ this.props.stars }</Text>
+                    <Text>{ shortNumber(this.props.stars) }</Text>
                   </Button>
                 </Col>
               </Row>
-              <Row>
+              <Row style={{ flexShrink: 1, flexGrow: 0 }}>
                 <Left>
                   <Body style={{ paddingRight: 10 }}>
-                    <Text numberOfLines={13}>{ this.props.description }</Text>
+                    <Text numberOfLines={11}>{ this.props.description }</Text>
                   </Body>
                 </Left>
               </Row>
