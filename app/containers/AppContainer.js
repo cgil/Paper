@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../actions'
 import Home from './Home'
+import Reader from './Reader'
 
 class AppContainer extends Component {
   render() {
-    return <Home { ...this.props } />
+    return <Reader { ...this.props } /> // TODO: Use Home.
   }
 }
 

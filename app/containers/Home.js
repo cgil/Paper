@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Header, Title, Content, Tab, Tabs, TabHeading, Icon, Body, Right, Left, Button } from 'native-base';
-import ScrollableTabBar  from 'native-base/src/basic/Tabs/ScrollableTabBar'
 import { View, Text, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
-import Book from '../components/Book';
+import BookCard from '../components/BookCard';
 
 class Home extends Component {
 
@@ -37,7 +36,7 @@ class Home extends Component {
           <Tab heading={ <TabHeading><Text>Recommended</Text></TabHeading> }>
             <Content padder>
               { this.books().map((book, i) =>
-                <Book
+                <BookCard
                   key={ book.id }
                   title={ book.title }
                   author={ book.author }
