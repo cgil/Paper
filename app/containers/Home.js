@@ -58,14 +58,6 @@ class Home extends Component {
               )}
             </Content>
           </Tab>
-          <Tab heading={ <TabHeading><Text>Science Fiction</Text></TabHeading> }>
-            <Content>
-            </Content>
-          </Tab>
-          <Tab heading={ <TabHeading><Text>Romance</Text></TabHeading> }>
-            <Content>
-            </Content>
-          </Tab>
         </Tabs>
       </Container>
     );
