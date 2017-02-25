@@ -1,2 +1,7 @@
 // Books
 export const SET_FETCHED_BOOKS = 'SET_FETCHED_BOOKS'
+
+// Navigation
+
+export const NAVIGATION_FORWARD = 'NAVIGATION_FORWARD'
+export const NAVIGATION_BACK = 'NAVIGATION_BACK'
