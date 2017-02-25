@@ -11,7 +11,8 @@ class BookCard extends Component {
     cover: React.PropTypes.string.isRequired,
     description: React.PropTypes.string.isRequired,
     views: React.PropTypes.number.isRequired,
-    stars: React.PropTypes.number.isRequired
+    stars: React.PropTypes.number.isRequired,
+    onPress: React.PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -39,7 +40,7 @@ class BookCard extends Component {
           </Left>
         </CardItem>
 
-        <CardItem cardBody>
+        <CardItem cardBody button onPress={ () => this.props.onPress() }>
           <Grid>
             <Col>
               <Image style={{ resizeMode: 'contain', flex: 1, width: null, height: 200 }} source={{ uri: this.props.cover }} />

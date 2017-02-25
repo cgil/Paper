@@ -3,7 +3,8 @@ const { NavigationExperimental, StatusBar} = ReactNative;
 import * as types from '../actions/types'
 import createReducer from '../lib/createReducer'
 import Home from '../containers/Home'
-import Reader from '../containers/Reader'
+import Detail from '../containers/Detail'
+import { HOME, DETAIL } from '../constants/routes'
 
 const {
  CardStack: NavigationCardStack,
@@ -12,19 +13,18 @@ const {
 
 export const navigationState = createReducer({ index: 0,
     routes: [
-      { key: 'Home',  },
-      { key: 'Reader' },
+      { key: HOME,  },
+      { key: DETAIL },
     ]
-  }, {
-
-  [types.NAVIGATION_FORWARD](state, action) {
-    return NavigationStateUtils.forward(state);
   },
+  {
+    [types.NAVIGATION_FORWARD](state, action) {
+      return NavigationStateUtils.forward(state);
+    },
 
-  [types.NAVIGATION_BACK](state, action) {
-    return NavigationStateUtils.back(state);
-  },
-  
+    [types.NAVIGATION_BACK](state, action) {
+      return NavigationStateUtils.back(state);
+    },
 });
 
 export const navigationParams = createReducer({ }, {

@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import { Container, Header, Title, Content, Tab, Tabs, TabHeading, Icon, Body, Right, Left, Button } from 'native-base';
 import { View, Text, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ActionCreators } from '../actions'
 import BookCard from '../components/BookCard';
+import { DETAIL } from '../constants/routes'
 
 class Home extends Component {
+
+  constructor(props) {
+    super(props)
+  }
 
   componentDidMount() {
     this.props.fetchBooks();
@@ -44,6 +51,9 @@ class Home extends Component {
                   description={ book.description }
                   views={ book.views }
                   stars={ book.stars }
+                  onPress={ () => {
+                    this.props.navigate({ key: DETAIL, id: book.id })
+                  }}
                 />
               )}
             </Content>
@@ -68,4 +78,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Home);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
