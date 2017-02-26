@@ -1,13 +1,11 @@
 import * as types from './types'
 import Api from '../lib/api'
+import { BOOKS } from '../constants/api'
 
 export function fetchBooks(genre) {
   return (dispatch, getState) => {
-    const params = [
-      `genre=${encodeURIComponent(genre)}`
-    ].join('&')
-    return Api.get(`/api/?${params}`).then(resp => {
-      dispatch(setFetchedBooks({books: resp}));
+    return Api.get(BOOKS).then(resp => {
+      dispatch(setFetchedBooks({ books: resp }));
     }).catch( (ex) => {
       console.log(ex);
     });
