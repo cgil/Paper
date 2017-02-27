@@ -1,1 +1,1 @@
-export const BOOKS = '/books/'
+export const BOOKS = '/books'

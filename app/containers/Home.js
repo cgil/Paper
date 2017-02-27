@@ -47,7 +47,7 @@ class Home extends Component {
                   key={ book.id }
                   title={ book.title }
                   author={ book.author }
-                  cover={ book.cover }
+                  cover={ book.cover_image_url }
                   description={ book.description }
                   views={ book.views }
                   stars={ book.stars }

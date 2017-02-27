@@ -16,8 +16,6 @@ class BookCard extends Component {
   }
 
   static defaultProps = {
-    cover: 'https://a.wattpad.com/cover/67943442-288-k687715.jpg',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
     views: 201200,
     stars: 1400000
   }
