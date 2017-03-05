@@ -17,7 +17,7 @@ class Detail extends Component {
   static propTypes = {
     title: React.PropTypes.string,
     author: React.PropTypes.string,
-    cover: React.PropTypes.string,
+    media_image_url: React.PropTypes.string,
     content: React.PropTypes.string,
     views: React.PropTypes.number,
     stars: React.PropTypes.number,
@@ -33,9 +33,16 @@ class Detail extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (isActiveView(DETAIL, this.props, nextProps)) {
+    if (isActiveView(DETAIL, this.props, nextProps) && !this.isCurrentEntry(nextProps)) {
       this.props.fetchEntry(nextProps.navigationParams.id);
     }
+  }
+
+  isCurrentEntry(nextProps) {
+    if (Object.values(this.props.fetchedEntry).length > 0) {
+      return nextProps.navigationParams.id === Object.values(this.props.fetchedEntry)[0].id;
+    }
+    return false;
   }
 
   entry() {
@@ -68,7 +75,7 @@ class Detail extends Component {
             </CardItem>
 
             <CardItem cardBody>
-              <Image style={{ resizeMode: 'contain', flex: 1, width: null, height: 200 }} source={{ uri: this.entry().cover_image_url }} />
+              <Image style={{ resizeMode: 'cover', width: null, height: 200, flex: 1 }} source={{ uri: this.entry().media_image_url || "" }} />
             </CardItem>
 
             <CardItem content>

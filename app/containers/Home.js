@@ -4,7 +4,7 @@ import { View, Text, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../actions'
-import BookCard from '../components/BookCard';
+import ArticleCard from '../components/ArticleCard';
 import { DETAIL } from '../constants/routes'
 
 class Home extends Component {
@@ -14,7 +14,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchEntries();
+    if (this.entries().length === 0) {
+        this.props.fetchEntries();
+    }
   }
 
   entries() {
@@ -41,13 +43,13 @@ class Home extends Component {
         </Header>
         <Tabs>
           <Tab heading={ <TabHeading><Text>Recommended</Text></TabHeading> }>
-            <Content padder>
+            <Content style={{ paddingHorizontal: 0, marginHorizontal: 0 }}>
               { this.entries().map((entry, i) =>
-                <BookCard
+                <ArticleCard
                   key={ entry.id }
                   title={ entry.title }
-                  author={ entry.author }
-                  cover={ entry.cover_image_url }
+                  author={ entry.channel_title }
+                  media_image_url={ entry.media_image_url }
                   description={ entry.description }
                   views={ entry.views }
                   stars={ entry.stars }
