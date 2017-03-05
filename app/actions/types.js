@@ -1,6 +1,6 @@
 // Books
-export const SET_FETCHED_BOOKS = 'SET_FETCHED_BOOKS'
-export const SET_FETCHED_BOOK = 'SET_FETCHED_BOOK'
+export const SET_FETCHED_ENTRIES = 'SET_FETCHED_ENTRIES'
+export const SET_FETCHED_ENTRY = 'SET_FETCHED_ENTRY'
 
 // Navigation
 

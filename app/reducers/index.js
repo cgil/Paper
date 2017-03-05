@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import * as booksReducer from './books'
+import * as entriesReducer from './entries'
 import * as navigationReducer from './navigation'
 
 export default combineReducers({
-  ...booksReducer,
+  ...entriesReducer,
   ...navigationReducer,
 })

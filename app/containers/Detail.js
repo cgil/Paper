@@ -34,12 +34,12 @@ class Detail extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (isActiveView(DETAIL, this.props, nextProps)) {
-      this.props.fetchBook(nextProps.navigationParams.id);
+      this.props.fetchEntry(nextProps.navigationParams.id);
     }
   }
 
-  book() {
-    return Object.keys(this.props.fetchedBook).map(key => this.props.fetchedBook[key])[0] || {}
+  entry() {
+    return Object.keys(this.props.fetchedEntry).map(key => this.props.fetchedEntry[key])[0] || {}
   }
 
   render() {
@@ -61,18 +61,18 @@ class Detail extends Component {
             <CardItem>
               <Left>
                 <Body>
-                  <Text>{ this.book().title }</Text>
-                  <Text note>{ this.book().author }</Text>
+                  <Text>{ this.entry().title }</Text>
+                  <Text note>{ this.entry().author }</Text>
                 </Body>
               </Left>
             </CardItem>
 
             <CardItem cardBody>
-              <Image style={{ resizeMode: 'contain', flex: 1, width: null, height: 200 }} source={{ uri: this.book().cover_image_url }} />
+              <Image style={{ resizeMode: 'contain', flex: 1, width: null, height: 200 }} source={{ uri: this.entry().cover_image_url }} />
             </CardItem>
 
             <CardItem content>
-              <Text>{ this.book().content }</Text>
+              <Text>{ this.entry().content }</Text>
             </CardItem>
 
             <CardItem style={{ paddingVertical: 0 }}>
@@ -102,7 +102,7 @@ class Detail extends Component {
 function mapStateToProps(state) {
   return {
     navigationParams: state.navigationParams,
-    fetchedBook: state.fetchedBook
+    fetchedEntry: state.fetchedEntry
   };
 }
 

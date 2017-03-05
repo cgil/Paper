@@ -14,11 +14,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBooks();
+    this.props.fetchEntries();
   }
 
-  books() {
-    return Object.keys(this.props.fetchedBooks).map(key => this.props.fetchedBooks[key])
+  entries() {
+    return Object.keys(this.props.fetchedEntries).map(key => this.props.fetchedEntries[key])
   }
 
   render() {
@@ -42,17 +42,17 @@ class Home extends Component {
         <Tabs>
           <Tab heading={ <TabHeading><Text>Recommended</Text></TabHeading> }>
             <Content padder>
-              { this.books().map((book, i) =>
+              { this.entries().map((entry, i) =>
                 <BookCard
-                  key={ book.id }
-                  title={ book.title }
-                  author={ book.author }
-                  cover={ book.cover_image_url }
-                  description={ book.description }
-                  views={ book.views }
-                  stars={ book.stars }
+                  key={ entry.id }
+                  title={ entry.title }
+                  author={ entry.author }
+                  cover={ entry.cover_image_url }
+                  description={ entry.description }
+                  views={ entry.views }
+                  stars={ entry.stars }
                   onPress={ () => {
-                    this.props.navigate({ key: DETAIL, id: book.id })
+                    this.props.navigate({ key: DETAIL, id: entry.id })
                   }}
                 />
               )}
@@ -66,7 +66,7 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    fetchedBooks: state.fetchedBooks
+    fetchedEntries: state.fetchedEntries
   };
 }
 

@@ -1,7 +1,7 @@
-import * as BookActions from './books'
+import * as EntryActions from './entries'
 import * as NavigationActions from './navigation'
 
 export const ActionCreators = {
-  ...BookActions,
+  ...EntryActions,
   ...NavigationActions,
 }
