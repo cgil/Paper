@@ -1,10 +1,10 @@
 import * as types from './types'
 import Api from '../lib/api'
-import { ENTRIES } from '../constants/api'
+import { ENTRIES, OLDER_ENTRIES } from '../constants/api'
 
-export function fetchEntries() {
+export function fetchEntries(currentOffset=0, pageSize=10, direction=OLDER_ENTRIES) {
   return (dispatch, getState) => {
-    return Api.get(`${ENTRIES}/`).then(resp => {
+    return Api.get(`${ENTRIES}/?current_offset=${currentOffset}&page_size=${pageSize}&direction=${direction}`).then(resp => {
       dispatch(setFetchedEntries({ entries: resp }));
     }).catch( (ex) => {
       console.log(ex);

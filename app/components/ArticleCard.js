@@ -10,6 +10,7 @@ class ArticleCard extends Component {
     author: React.PropTypes.string,
     media_image_url: React.PropTypes.string,
     description: React.PropTypes.string.isRequired,
+    author: React.PropTypes.string,
     views: React.PropTypes.number.isRequired,
     stars: React.PropTypes.number.isRequired,
     onPress: React.PropTypes.func.isRequired,
@@ -35,7 +36,11 @@ class ArticleCard extends Component {
         </CardItem>
 
         <CardItem cardBody button onPress={ () => this.props.onPress() }>
-          <Image style={{ resizeMode: 'cover', width: null, height: 200, flex: 1 }} source={{ uri: this.props.media_image_url || "" }} />
+          { this.props.media_image_url ?
+              <Image style={{ resizeMode: 'cover', width: null, height: 200, flex: 1 }} source={{ uri: this.props.media_image_url }} />
+              : null
+
+          }
         </CardItem>
 
         <CardItem content button onPress={ () => this.props.onPress() }>
@@ -49,10 +54,6 @@ class ArticleCard extends Component {
               <Button iconLeft transparent>
                 <Icon active name="eye" />
                 <Text style={{ paddingLeft: 5 }}>{ shortNumber(this.props.views) }</Text>
-              </Button>
-              <Button iconLeft transparent>
-                <Icon active name="star" />
-                <Text style={{ paddingLeft: 5 }}>{ shortNumber(this.props.stars) }</Text>
               </Button>
             </Left>
             <Body/>

@@ -4,7 +4,7 @@ import {
   Icon, Body, Right, Left, Button, Card, CardItem, Grid,
   Col, Row
 } from 'native-base'
-import { View, Text, Dimensions, Image } from 'react-native'
+import { View, Text, Dimensions, Image, WebView } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../actions'
@@ -24,30 +24,14 @@ class Detail extends Component {
   }
 
   static defaultProps = {
-    views: 201200,
-    stars: 1400000,
+    views: 0,
+    stars: 0,
   }
 
   constructor(props) {
     super(props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (isActiveView(DETAIL, this.props, nextProps) && !this.isCurrentEntry(nextProps)) {
-      this.props.fetchEntry(nextProps.navigationParams.id);
-    }
-  }
-
-  isCurrentEntry(nextProps) {
-    if (Object.values(this.props.fetchedEntry).length > 0) {
-      return nextProps.navigationParams.id === Object.values(this.props.fetchedEntry)[0].id;
-    }
-    return false;
-  }
-
-  entry() {
-    return Object.keys(this.props.fetchedEntry).map(key => this.props.fetchedEntry[key])[0] || {}
-  }
 
   render() {
     return (
@@ -59,48 +43,14 @@ class Detail extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Detail</Title>
+            <Title>Paper Detail</Title>
           </Body>
           <Right/>
         </Header>
-        <Content padder>
-          <Card>
-            <CardItem>
-              <Left>
-                <Body>
-                  <Text>{ this.entry().title }</Text>
-                  <Text note>{ this.entry().author }</Text>
-                </Body>
-              </Left>
-            </CardItem>
 
-            <CardItem cardBody>
-              <Image style={{ resizeMode: 'cover', width: null, height: 200, flex: 1 }} source={{ uri: this.entry().media_image_url || "" }} />
-            </CardItem>
-
-            <CardItem content>
-              <Text>{ this.entry().content }</Text>
-            </CardItem>
-
-            <CardItem style={{ paddingVertical: 0 }}>
-              <Left>
-                <Button iconLeft transparent>
-                  <Icon active name="thumbs-up" />
-                  <Text>12 Likes</Text>
-                </Button>
-              </Left>
-              <Body>
-                <Button iconLeft transparent>
-                  <Icon active name="chatbubbles" />
-                  <Text>4 Comments</Text>
-                </Button>
-              </Body>
-              <Right>
-                <Text>11h ago</Text>
-              </Right>
-            </CardItem>
-          </Card>
-        </Content>
+        <WebView
+            source={{ uri: this.props.navigationParams.link }}
+        />
       </Container>
     );
   }
