@@ -9,7 +9,7 @@ export const fetchedEntries = createReducer({}, {
       let entry = entryData.attributes
       newState[id] = { ...entry, id };
     });
-    return newState;
+    return {...state, ...newState}
   },
 });
 
