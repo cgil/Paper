@@ -17,7 +17,7 @@ class ArticleCard extends Component {
   }
 
   static defaultProps = {
-    views: 201200,
+    views: 10,
     stars: 1400000
   }
 

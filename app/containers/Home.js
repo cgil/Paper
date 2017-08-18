@@ -115,7 +115,7 @@ class Home extends Component {
                 renderRow={(entry) =>
                   <ArticleCard
                     key={ entry.id }
-                    title={ entry.id }
+                    title={ entry.title }
                     author={ entry.channel_title }
                     media_image_url={ entry.media_image_url }
                     description={ entry.description }
